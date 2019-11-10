@@ -13,11 +13,17 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    return render_template('home1.html', tasks = mongo.db.tasks.find())
+    return render_template('home.html', tasks = mongo.db.tasks.find())
 
 @app.route('/add')
 def add():
     return render_template('add.html',categories = mongo.db.categories.find())
+    
+@app.route('/add_recipe', methods=['POST'])
+def add_recipe():
+    tasks = mongo.db.tasks
+    tasks.insert_one(request.form.to_dict())
+    return redirect(url_for('home'))
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

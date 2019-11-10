@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
     {% block content %}
-    <h1> HUNGRY CAMEL</h1>
-    <ul class="collapsible" data-collapsible="accordion">
-        {% for task in tasks %}
-        <li>
-            <div class="collapsible-header">
-
-                <div class=" task_header col s9">
-                    <i class="material-icons">expand_more</i><strong>{{task.category_name}}</strong> - {{task.recipe_name}}
-                </div>
+    <h1> TEST</h1>
+    {% for i in tasks%}
+      <div class="row">
+        <div class="col s6 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{i.url}}">
+              <span id="card-image-title" class="overlay-dark card-title">{{i.category_name}} - {{i.recipe_name}}</span>
             </div>
-            <div class="collapsible-body">
-                {{task.description}}
+            <div class="card-content">
+              {{i.description}}
             </div>
-        </li>
-        {% endfor %}
-    </ul>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
     {% endblock %}
+    
