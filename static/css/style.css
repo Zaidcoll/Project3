@@ -1,7 +1,19 @@
 body{
   background-color:orange;
-}
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+  }
 
 .overlay-dark {
   background-color: rgba(0, 0, 0, 0.5);
   }
+  
+img{
+  width:400px ; 
+  height:400px;
+}
