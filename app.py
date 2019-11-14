@@ -11,9 +11,29 @@ app.config['MONGO_URI'] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
+@app.route('/test')
+def test():
+    return render_template('test.html',test=mongo.db.tasks.find())
+    
 @app.route('/')
-def home():
+def recipes():
     return render_template('home.html', tasks = mongo.db.tasks.find())
+    
+@app.route('/recipe/<recipe_id>')
+def recipe(recipe_id):
+    recipe_db = mongo.db.tasks.find_one_or_404({'_id': ObjectId(recipe_id)})
+    return render_template('recipe.html', recipe=recipe_db)
+
+@app.route('/edit/<recipe_id>')
+def edit(recipe_id):
+    recipe_db = mongo.db.tasks.find_one({'_id': ObjectId(recipe_id)})
+    all_categories = mongo.db.categories.find()
+    return render_template('edit.html', recipe=recipe_db,categories=all_categories)
+
+
+@app.route('/recipes')
+def home():
+    return render_template('recipes.html',recipe = mongo.db.tasks.find())
 
 @app.route('/add')
 def add():
@@ -23,8 +43,11 @@ def add():
 def add_recipe():
     tasks = mongo.db.tasks
     tasks.insert_one(request.form.to_dict())
-    return redirect(url_for('home'))
+    return redirect(url_for('recipes'))
     
+
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

@@ -1,25 +1,38 @@
 {% extends 'base.html' %}
     {% block content %}
-    <h1> TEST</h1>
-    {% for i in tasks%}
-    {%if loop.index < 5%}
-      <div class="card card-stacked">
-        <div class="col m6">
-          <div class="card">
-            <div class="card-image responsive-img" >
-              <img src="{{i.url}}"alt = "No IMAGE AVAILABLE FOR - {{i.recipe_name}}  ">
-              <span id="card-image-title" class="overlay-dark card-title">{{i.category_name}} - {{i.recipe_name}}</span>
+    <header class="jumbotron my-4">
+        <p class="lead ">Make yourself a cheeseburger!</p>
+        <div class="row">
+            <div class="col-lg-4">
+                <form class="input-group mb-3" action="/search">
+                    <input class="form-control" type="text" name="query"/>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Find Recipes!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+      <div class="row">
+        {%for recipe in tasks%}
+        {%if loop.index < 5%}
+        <div class="col s12 m6">
+          <div class="card ">
+            <div class="card-image">
+              <img src="{{recipe.url}}">
+              <span class="card-title overlay-dark">{{recipe.recipe_name}}</span>
             </div>
             <div class="card-content">
-              {{i.description}}
+              <p>{{recipe.description}}</p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
+              <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="btn btn-primary">Find Out
+                            More!</a>
             </div>
           </div>
         </div>
-      </div>
-      {%endif%}
-      {%endfor%}
+        {%endif%}
+        {%endfor%}
+    </div>
     {% endblock %}
     
