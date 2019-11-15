@@ -5,4 +5,5 @@ $(function(){
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
     $('.carousel.carousel-slider').carousel({fullWidth: true});
+    $('.slider').slider();
 })

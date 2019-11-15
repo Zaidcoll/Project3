@@ -1,7 +1,9 @@
-.jumbotron{
-  background-image: url(img/cheeseburger.jpg)}
-
+.slider{
+  margin-top: 10px;
+}
 .overlay-dark {
   background-color: rgba(0, 0, 0, 0.5);
   }
-  
+.btn{
+  margin:5px;
+}

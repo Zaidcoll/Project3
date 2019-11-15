@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
     {% block content %}
-    <header class="jumbotron my-4">
-        <p class="lead ">Make yourself a cheeseburger!</p>
-        <div class="row">
-            <div class="col-lg-4">
-                <form class="input-group mb-3" action="/search">
-                    <input class="form-control" type="text" name="query"/>
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">Find Recipes!</button>
-                    </div>
-                </form>
-            </div>
+    
+
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="static/images/newcheese.PNG"> 
+        <div class="caption center-align">
+          <h3>SECRET RECIPE WELCOMES YOU</h3>
+          <h5 class="light grey-text text-lighten-3">View all recipes here</h5>
         </div>
-    </header>
+      </li>
+      <li>
+        <img src="static/images/addrecipe.jpeg"> 
+        <div class="caption center-align">
+          <h3>KNOW A SECRET RECIPE?</h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+    
+    <h1 class='center-align light-italic' > FEATURED RECIPE </h1>
       <div class="row">
         {%for recipe in tasks%}
         {%if loop.index < 5%}
         <div class="col s12 m6">
           <div class="card ">
             <div class="card-image">
-              <img src="{{recipe.url}}">
+              <img src="{{recipe.url}}"width="480" height="240">
               <span class="card-title overlay-dark">{{recipe.recipe_name}}</span>
             </div>
             <div class="card-content">

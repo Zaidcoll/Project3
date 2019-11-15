@@ -45,6 +45,19 @@ def add_recipe():
     tasks.insert_one(request.form.to_dict())
     return redirect(url_for('recipes'))
     
+@app.route('/update_task/<recipe_id>', methods=["POST"])
+def update_task(recipe_id):
+    tasks = mongo.db.tasks
+    tasks.update( {'_id': ObjectId(recipe_id)},
+    {
+        'recipe_name':request.form.get('recipe_name'),
+        'category_name':request.form.get('category_name'),
+        'description': request.form.get('description'),
+        'ingredients': request.form.get('ingredients'),
+        'steps':request.form.get('steps'),
+        'url':request.form.get('url')
+    })
+    return redirect(url_for('home'))
 
 
 
