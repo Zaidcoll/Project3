@@ -43,7 +43,7 @@ def add():
 def add_recipe():
     tasks = mongo.db.tasks
     tasks.insert_one(request.form.to_dict())
-    return redirect(url_for('recipes'))
+    return redirect(url_for('home'))
     
 @app.route('/update_task/<recipe_id>', methods=["POST"])
 def update_task(recipe_id):
@@ -58,7 +58,12 @@ def update_task(recipe_id):
         'url':request.form.get('url')
     })
     return redirect(url_for('home'))
-
+    
+    
+@app.route('/delete_task/<recipe_id>')
+def delete_task(recipe_id):
+    mongo.db.tasks.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':

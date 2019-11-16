@@ -4,17 +4,16 @@
         <div class="row">
             <div class="col-lg-4">
                     <div class="input-group-append">
-                        <button class="btn btn-primary"id = 'KFC'  value = 'KFC'>KFC</button>
-                        <button class="btn btn-primary"id ='MCD'  value = 'MC DONALDS'>MC DONALDS</button>
-                        <button class="btn btn-primary"id='PIZZA' value = 'PIZZA HUT'>PIZZA HUT</button>
-                        <button class="btn btn-primary"id='BURGER'value = 'BURGER KING'>BURGER KING</button>
-                        <button class="btn btn-primary"id='ALL'value = 'ALL'>VIEW ALL</button>
+                        <button class="btn btn-primary" type="submit">KFC</button>
+                        <button class="btn btn-primary" type="submit">MC DONALDS</button>
+                        <button class="btn btn-primary" type="submit">PIZZA HUT</button>
+                        <button class="btn btn-primary" type="submit">BURGER KING</button>
                     </div>
             </div>
         </div>
   {%for food in recipe%}
-    <div class="card col s12 m4 l3 {{food.category_name}}">
-    <div class="card-image waves-effect waves-block waves-light ">
+    <div class="card col s12 m4 l3">
+    <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="{{food.url}}" height="400">
     </div>
     <div class="card-content">
@@ -25,7 +24,8 @@
       <p>{{food.description}}</p>
       <a href="{{ url_for('recipe', recipe_id=food._id) }}" class="btn btn-primary">Find Out
                             More!</a>
-      
+      <a href="{{ url_for('delete_task', recipe_id=food._id) }}" class="btn btn-primary">Delete
+                            Recipe</a>
     </div>
   </div>
   {%endfor%}

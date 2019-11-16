@@ -8,13 +8,15 @@
         <img src="static/images/newcheese.PNG"> 
         <div class="caption center-align">
           <h3>SECRET RECIPE WELCOMES YOU</h3>
-          <h5 class="light grey-text text-lighten-3">View all recipes here</h5>
+          <a href="{{url_for('home')}}"><button class="btn btn-primary" type="submit">View</button></a>
+          
         </div>
       </li>
       <li>
         <img src="static/images/addrecipe.jpeg"> 
         <div class="caption center-align">
           <h3>KNOW A SECRET RECIPE?</h3>
+          <a href="{{url_for('add')}}"><button class="btn btn-primary red" type="submit">Share</button></a>
         </div>
       </li>
     </ul>
